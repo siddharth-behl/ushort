@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="<%=locals.baseurl%>/homepage.css">
+  <link rel="shortcut icon" href="<%=locals.baseurl%>/shortener.ico" type="image/x-icon">
+</head>
+
+<header>
+
+  <nav>
+    <input type="checkbox" id="nav-toggle">
+    <a href="/"><div class="logo">U<strong>short</strong></div></a>
+    <ul class="links">
+      <li><a href="/analytics">Analytics</a></li>
+      <li><a href="/logout">Logout</a></li>
+    
+    </ul>
+    <label for="nav-toggle" class="icon-burger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </label>
+  </nav>
+
+</header>
+
+<body>
+
+
+  <div class="main">
+
+    <div id="container">
+      <h1>URL Shortener</h1>
+      <p>Your go-to solution for instantly shortening long, cumbersome URLs into sleek and shareable links!</p>
+      <% if (locals.nourl) { %>
+
+      <div id="error">Please enter a Url !</div>
+
+      <% } %>
+      <%if (!locals.url) {%>
+      <div class="url-input">
+        <form action="/post" method="post">
+          <input type="url" id="urlInput" placeholder="Enter URL" name="url">
+          <button id="shortenBtn" formaction="/post">Shorten</button>
+        </form>
+
+      </div>
+      <%}else{%>
+
+
+      <div id="result">
+        <p>Shortened URL:</p>
+        <div class="missing exist">
+          <div id="clipboardtext" class="box">Text copied to Clipboard!</div>
+          
+        </div>
+        <a href=<%=`${locals.url}`%> id="shortenedURL"><%=locals.url %></a>
+        <button id="copy">Copy</button>
+      </div>
+
+      <a href=<%=`${locals.url.split("/")[0]}/analytics`%>><button class="analytics">Show Analytics</button></a>
+      <%}%>
+  </div>
+
+  </div>
+  
+
+    <!-- Script JS -->
+    <script src="<%=locals.baseurl%>/homepage.js"></script>
+</body>
+</html>

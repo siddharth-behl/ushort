@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin data</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .box {
+      height: 30vh;
+      width: 80vw;
+      background-color: rgba(37, 157, 255, 0.549);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <% locals.data.forEach(element => { %>
+  <br>
+  <div class="box">
+    <p>Name: <%=element.auth_data.Name %></p>
+    <p>Role: <%=element.auth_data.role %></p>
+    <p>Email: <%=element.auth_data.Email %></p>
+    <p>Shortened Link: <%=`${locals.baseurl}/${element.shortID} `%></p>
+    <p>Redirect Url: <%=element.redirecturl %> </p>
+    <p>Clicks: <%= element.clicks%></p>
+    <br>
+  </div>
+  <% }) %>
+</body>
+
+</html>
